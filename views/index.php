@@ -14,9 +14,13 @@ $totals=new Querybulder($db);
 $total=$totals->count('id','article');
 $paginates=ceil($total/$limit);
 $page=$_GET["page"]??1;
+
+if(($page>$paginates)|| ($page<=0)){
+  $page=1;
+}
 $offset=($page-1)*$limit;
 if(!empty($_GET['q'] )){
-  $req_extens= " WHERE name OR auteur LIKE  " .  "'%" . $_GET['q'] . "%'";
+  $req_extens= " WHERE name  LIKE  " .  "'%" . $_GET['q'] . "%'";
   $req = $req . $req_extens;
 }
 $req=$req . " LIMIT $limit OFFSET $offset";
@@ -75,10 +79,10 @@ $count=count($contents);
 <?php if(empty($_GET['q'])):?>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
+    <li class="page-item">
       <a class="page-link" href="<?=$router->generate("home")?>?page=<?=$page-1?>">Precedent</a>
     </li>
-    <?php for($i=1;$i<$paginates;$i++):?>
+    <?php for($i=1;$i<=$paginates;$i++):?>
     <li class="page-item"><a class="page-link" href="<?=$router->generate("home")?>?page=<?=$i?>"><?=$i?></a></li>
     <?php endfor ?>
     <li class="page-item">

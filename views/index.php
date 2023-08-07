@@ -1,13 +1,16 @@
 <?php
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 use App\Getpdo;
+use App\LittleContent;
+global $router;
 
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 $pdo=new  Getpdo;
 $db=$pdo::connect();
+$contents=$db->query("SELECT * FROM article")->fetchAll(PDO::FETCH_OBJ);
 
 
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
+
 
 ?>
 
@@ -32,18 +35,20 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 
 <section class="features6 cid-s6S1tUtSWp" id="features06-e">
  <h1 class="text-md-center mt-5">les derniers aricles</h1>
-<main>
-
-<div class="card m-5" style="width: 18rem;">
+<main class="d-flex justify-content-center   flex-wrap">
+<?php foreach($contents as  $content): ?>
+  
+  <?php $extrait= new LittleContent($content->content)?> 
+<div class="card m-5 rounded border border-success" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <h5 class="card-title"><?=$content->name?></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><?=$content->auteur?></h6>
+    <p class="card-text"><?=$extrait->extrait()?></p>
+    <a class="card-link"><?=$content->created_at?></a>
+    <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="card-link">lire l'article</a>
   </div>
 </div>
+  
+<?php endforeach ?>
 </main>
 
-<?php require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/footer.php';
-?>

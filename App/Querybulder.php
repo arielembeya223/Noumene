@@ -14,4 +14,5 @@ class Querybulder{
         $fetch=(int)($query->fetch()[0]);
         return $fetch;
        }
+      
 }

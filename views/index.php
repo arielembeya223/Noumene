@@ -17,10 +17,11 @@ $page=$_GET["page"]??1;
 
 if(($page>$paginates)|| ($page<=0)){
   $page=1;
+  header('Location:' . $router->generate('home'));
 }
 $offset=($page-1)*$limit;
 if(!empty($_GET['q'] )){
-  $req_extens= " WHERE name  LIKE  " .  "'%" . $_GET['q'] . "%'";
+  $req_extens= " WHERE name  LIKE  " .  "'%" . htmlentities($_GET['q']) . "%'";
   $req = $req . $req_extens;
 }
 $req=$req . " LIMIT $limit OFFSET $offset";
@@ -56,7 +57,7 @@ $count=count($contents);
   <?php if(!empty($_GET['q']) && ($count != 0)):?>
  <h1 class="text-md-center mt-5">les resultats de votre recherche</h1>
   <?php endif?>
-  <?php if($count === 0):?>
+  <?php if(($count === 0) && !empty($_GET['q'])):?>
  <h1 class="text-md-center mt-5">Aucun resultat correspondant a votre recherche n'a ete trouve</h1>
   <?php endif?>
 <main class="d-flex justify-content-center   flex-wrap">

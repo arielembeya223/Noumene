@@ -7,19 +7,22 @@ $router->map('GET', '/', function() {
 },'home');
 //
 //page des articles
-$router->map('GET', '/[*:auteur]/[*:name]', function() {
+$router->map('GET', '/[a:auteur]/[a:name]', function() {
     
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');
   //
 
 $match = $router->match();
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){
     global $router;
-    require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
+    global $params;
+    $params= $match['params'];
     $match['target']();
-    require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/footer.php';
+    
 }else{
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/404.php';
 }
+require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/footer.php';
  

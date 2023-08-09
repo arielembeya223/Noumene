@@ -19,8 +19,17 @@ if(empty($resolutions)){
 }
 ?>
 <?php foreach($resolutions as $resolutions):?>
+    </section class="d-flex flex-row">
+    <main class="">
     <h1><?=$resolutions->name?></h1>
     <P><?=$resolutions->content?></P>
+    </main>
+    <aside class="">
+        <span>publie le <?=$resolutions->created_at?> par <?=$resolutions->auteur?></span>
+    </aside>
+    <section>
+    
+   
 <?php endforeach ?>
 
 

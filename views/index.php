@@ -55,10 +55,10 @@ $count=count($contents);
  <h1 class="text-md-center mt-5">les derniers aricles</h1>
   <?php endif?>
   <?php if(!empty($_GET['q']) && ($count != 0)):?>
- <h1 class="text-md-center mt-5">les resultats de votre recherche</h1>
+ <h3 class="text-md-center mt-5">les resultats de votre recherche</h3>
   <?php endif?>
   <?php if(($count === 0) && !empty($_GET['q'])):?>
- <h1 class="text-md-center mt-5">Aucun resultat correspondant a votre recherche n'a ete trouve</h1>
+ <h3 class="text-md-center mt-5">Aucun resultat correspondant a votre recherche n'a ete trouve</h3>
   <?php endif?>
 <main class="d-flex justify-content-center   flex-wrap">
 <?php foreach($contents as  $content): ?>

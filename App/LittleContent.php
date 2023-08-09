@@ -10,7 +10,7 @@ class LittleContent{
     {
         $coupe=$this->string;
         $length=mb_strpos($coupe,' ',$limit);
-        $substring=mb_substr($coupe,0,$length);
+        $substring=nl2br(mb_substr($coupe,0,$length));
         return $substring . "...";
 
     }

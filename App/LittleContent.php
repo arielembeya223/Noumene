@@ -14,4 +14,8 @@ class LittleContent{
         return $substring . "...";
 
     }
+    public function AfiicheDate(){
+       
+
+    }
 }

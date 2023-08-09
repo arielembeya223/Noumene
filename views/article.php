@@ -44,7 +44,32 @@ if(!empty($_GET['pseudo']) && !empty($_GET['commentaire'])){
     </div>
 </div>
   
-                        <?php
+                       
+                              
+    </div>
+</div>
+<div class="container d-flex h-100">
+    <div class="row align-self-center">
+        <h6>postez un commentaire</h6>
+    </div>   
+</div>        
+<div class="container d-flex h-100">
+    <div class="row align-self-center">
+       <form action="" method="GET">
+        <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Nom</label>
+  <input type="texte" class="form-control" id="exampleFormControlInput1" placeholder=" nom ou pseudo" name="pseudo">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">commentaire</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1"  placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
+</div> 
+<input class = "btn btn btn-success me-1" type="submit"></input>
+        </form>
+    </div>   
+</div>       
+
+<?php
                           $listing=new  Getpdo;
                           $connexion=$listing::connect();
                             $prepare=$connexion->prepare("SELECT * FROM article WHERE categorie=:categorie LIMIT 5 ");
@@ -69,31 +94,7 @@ if(!empty($_GET['pseudo']) && !empty($_GET['commentaire'])){
                                   <a href="<?=$router->generate('article',['auteur'=>$fin->auteur,'name'=>$fin->name])?>"><?=$fin->name?></a></br>
                     
 
-                                 <?php endforeach ?>
-                              
-    </div>
-</div>
-                                 
+                                 <?php endforeach ?>                                 
 <?php endforeach ?>
-<div class="container d-flex h-100">
-    <div class="row align-self-center">
-        bonjour
-    </div>   
-</div>        
-<div class="container d-flex h-100">
-    <div class="row align-self-center">
-       <form action="" method="GET">
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Nom</label>
-  <input type="texte" class="form-control" id="exampleFormControlInput1" placeholder=" nom ou pseudo" name="pseudo">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">commentaire</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1"  placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
-</div> 
-<input class = "btn btn btn-success me-1" type="submit"></input>
-        </form>
-    </div>   
-</div>       
 
 

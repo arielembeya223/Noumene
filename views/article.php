@@ -32,6 +32,14 @@ if(!empty($_GET['pseudo']) && !empty($_GET['commentaire'])){
         "name"=>$name
     ]);
 }
+$getcommentparam=new  Getpdo;
+$preparation=$getcommentparam::connect();
+$commentaires=$preparation->prepare("SELECT * FROM commentaires  WHERE param_auteur=:auteur AND param_name=:name");
+$commentaires->execute([
+   'auteur'=>$auteur,
+    'name'=>$name
+]);
+$finitos=$commentaires->fetchAll(PDO::FETCH_OBJ);
 ?>  
 <?php foreach($resolutions as $resolution):?>
     <div class="container d-flex h-100 w-100">
@@ -67,8 +75,19 @@ if(!empty($_GET['pseudo']) && !empty($_GET['commentaire'])){
 <input class = "btn btn btn-success me-1" type="submit"></input>
         </form>
     </div>   
-</div>       
-
+</div> 
+<?php foreach($finitos as $finito):?>
+<div class="container d-flex h-100">
+  <div class="row d-flex justify-content-center">    
+    <div class="card mt-2 mb-2">
+          <div class="card-body">
+            <p><?=$finito->content?></p>
+                <p class="small mb-0 ms-2"><?=$finito->pseudo?></p>
+              </div>
+      </div> 
+    </div> 
+</div> 
+<?php endforeach ?>         
 <?php
                           $listing=new  Getpdo;
                           $connexion=$listing::connect();

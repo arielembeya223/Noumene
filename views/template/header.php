@@ -25,16 +25,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">acceuille</a>
+          <a class="nav-link" aria-current="page" href="#">acceuille</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">voir les articles </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">s'inscrire</a>
+          <a class="nav-link" aria-disabled="true">s'inscrire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">se connecter</a>
+          <a class="nav-link" aria-disabled="true">se connecter</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

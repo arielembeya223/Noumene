@@ -1,15 +1,17 @@
 
 <script>
  let headers = document.querySelectorAll(".nav-link") 
+ let sum = 0
  for(let header of headers){
+
     header.addEventListener("click",function(){
-        if(header.classList.contains("active")){
-            header.classList.remove("active")
-        }else{
-            header.classList.add("active")
+         sum++
+    if(sum>1){
+        for(let navs of headers){
+            navs.classList.remove("active")
         }
-        
-        
+    }
+            header.classList.add("active")
     })
  }
 </script>

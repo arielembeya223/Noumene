@@ -8,13 +8,23 @@
     <meta name="keywords" content="Civilisation  Culturelle Littérature Éducation Préhistoire Civilisation Culturelle Littérature Éducation Gastronomie Culturation Diversité Religion Tradition Musique Citoyenneté Science  Poésie Philosophie Paralittérature Sociologie Culture Philologie Mythologie Narratologie Littéraires Grammaire Science Jeunesse Historiographie  Pedagogie Ecole Emancipation Educateurs Educatives Economie Evaluation Educatrice Educate Educateur Parentalite  Poésie Claudélienne Poétisation Poéticité">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="icon" href="../image/Noumene.png" type="image/png" /> 
+    <link  href="../image/Noumene.png" type="image/png"/> 
     <title>Noumene</title>
   </head>
 <body>
 <style>
   body{
     font-family: "Times New Roman";
+  }
+  .nobull{
+    display:none;
+  }
+  .bull{
+    display:fixed;
+    height:20px;
+    width:200px;
+    background-color: yellow;
+    color:blueviolet;
   }
 </style>    
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
@@ -32,10 +42,10 @@
           <a class="nav-link" href="#">voir les articles </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-disabled="true">s'inscrire</a>
+          <a class="nav-link">s'inscrire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-disabled="true">se connecter</a>
+          <a class="nav-link">se connecter</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

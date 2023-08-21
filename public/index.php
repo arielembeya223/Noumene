@@ -8,8 +8,7 @@ $router->map('GET', '/', function() {
 },'home');
 //
 //page des articles
-$router->map('GET', '/[*:auteur]/[*:name]', function() {
-    
+$router->map('GET', '/[a:auteur]/[a:name]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');
   //
@@ -25,5 +24,5 @@ if(is_array($match)){
 }else{
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/404.php';
 }
-require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/footer.php';
+require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/footer.html';
  

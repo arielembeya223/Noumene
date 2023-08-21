@@ -1,4 +1,5 @@
 <?php
+
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 $router = new AltoRouter();
 //homme page
@@ -7,7 +8,7 @@ $router->map('GET', '/', function() {
 },'home');
 //
 //page des articles
-$router->map('GET', '/[a:auteur]/[a:name]', function() {
+$router->map('GET', '/[*:auteur]/[*:name]', function() {
     
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');

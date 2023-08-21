@@ -41,7 +41,7 @@ $count=count($contents);
                                                                                                                                                
                <form class = "d-flex"  action="" method="GET">  
   <input class = "form-control" type = "search" placeholder = "vous recherchez?" name="q">  
-  <input class = "btn btn btn-success me-1" type="submit"></input>  
+  <button class = "btn btn btn-success me-1" type="submit"><i class="bi bi-search"></i></button>  
 </form>                 
                                                          
             

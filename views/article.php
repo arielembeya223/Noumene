@@ -40,80 +40,58 @@ $commentaires->execute([
     'name'=>$name
 ]);
 $finitos=$commentaires->fetchAll(PDO::FETCH_OBJ);
-?>  
-<?php foreach($resolutions as $resolution):?>
-    <div class="container d-flex h-100 w-100">
-    <div class="row align-self-center">
-        
-    <h1 class="text-decoration-underline"><?= $resolution->name?></h1>
-                   <p>publie le: <?=$resolution->created_at?> par <?= $resolution->auteur?></p>
-                   <p><?=nl2br($resolution->content)?></p> 
-
-    </div>
-</div>
-  
-                       
-                              
-    </div>
-</div>
-<div class="container d-flex h-100">
-    <div class="row align-self-center">
-        <h6>postez un commentaire</h6>
-    </div>   
-</div>        
-<div class="container d-flex h-100">
-    <div class="row align-self-center">
-       <form action="" method="GET">
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Nom</label>
-  <input type="texte" class="form-control" id="exampleFormControlInput1" placeholder=" nom ou pseudo" name="pseudo">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">commentaire</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1"  placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
-</div> 
-<input class = "btn btn btn-success me-1" type="submit"></input>
-        </form>
-    </div>   
-</div> 
-<?php foreach($finitos as $finito):?>
-<div class="container d-flex h-100">
-  <div class="row d-flex justify-content-center">    
-    <div class="card mt-2 mb-2">
-          <div class="card-body">
-            <p><?=$finito->content?></p>
-                <p class="small mb-0 ms-2"><?=$finito->pseudo?></p>
-              </div>
-      </div> 
-    </div> 
-</div> 
-<?php endforeach ?>         
-<?php
-                          $listing=new  Getpdo;
-                          $connexion=$listing::connect();
-                            $prepare=$connexion->prepare("SELECT * FROM article WHERE categorie=:categorie LIMIT 5 ");
-                            $prepare->execute(["categorie"=>$resolution->categorie]);
-                             $fins=$prepare->fetchAll(PDO::FETCH_OBJ);
-                               $countable=count($fins);
-
-                              ?>
-                                 <div class="container d-flex h-100">
-    <div class="row align-self-center">
-    <?php if($countable>1):?>
-                                 <h3>ces articles pourront vous interesser</h3>
-                                      <?php endif?>
-                                  <?php if($countable===1):?>
-                                   <h3>cette article pourra vous interesser</h3>
-                                    <?php endif?>
-                                    <?php if($countable===0):?>
+?>
+<div class="container">
+  <article> 
+      <!--gestion de l'affichage d'article-->
+      <?php foreach($resolutions as $resolution):?>
+            <h1><?=$resolution->name?></h1>
+            <h1><p>publie le: <?=$resolution->created_at?> par <?= $resolution->auteur?></p></h1>
+            <p><?=nl2br($resolution->content)?></p>
+      <!---->
+      <!--insertion des commentaires-->
+      <h2>Les commentaires</h2>
+      <form action="" method="GET">
+          <div class="row mb-2">
+              <div class="col-sm">
+                    <input type="texte" class="form-control" id="exampleFormControlInput1" placeholder=" nom ou pseudo" name="pseudo">
+                </div> 
+           </div>
+            <textarea class="form-control mb-2"  id="exampleFormControlTextarea1"   style="min-height: 150px;" placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
+            <input class = "btn btn btn-success me-1" type="submit"></input>
+      </form>     
+            <!-- gestion des commentaires-->   
+        <?php foreach($finitos as $finito):?>
+                <article class="mb-4">
+                    <div class="mb-1"><strong class="js-username"><?=$finito->pseudo?></strong></div>
+                    <p class="js-content"><?=$finito->content?></p>
+                </article>
+         <?php endforeach ?>
+             <!---->
+             <!--listing d'article lie a cet article-->
+            <?php
+              $listing=new  Getpdo;
+               $connexion=$listing::connect();
+                 $prepare=$connexion->prepare("SELECT * FROM article WHERE categorie=:categorie LIMIT 5 ");
+                $prepare->execute(["categorie"=>$resolution->categorie]);
+                 $fins=$prepare->fetchAll(PDO::FETCH_OBJ);
+                    $countable=count($fins);
+                  ?>
+                      <div class="container d-flex h-100">
+                        <div class="row align-self-center">
+            <?php if($countable>1):?>
+                               <h3>ces articles pourront vous interesser</h3>
+              <?php endif?>
+                <?php if($countable===1):?>
+                                <h3>cette article pourra vous interesser</h3>
+                  <?php endif?>
+                  <?php if($countable===0):?>
                                      <h3></h3>
-                                   <?php endif?>
-                                <?php foreach($fins as $fin):?>
-                    
+                    <?php endif?>
+                 <?php foreach($fins as $fin):?>                    
                                   <a href="<?=$router->generate('article',['auteur'=>$fin->auteur,'name'=>$fin->name])?>"><?=$fin->name?></a></br>
-                    
-
-                                 <?php endforeach ?>                                 
-<?php endforeach ?>
-
+                  <?php endforeach ?>                                 
+      <?php endforeach ?>
+  </article>
+</div>
 

@@ -1,4 +1,4 @@
-
+<?php global $title ;?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,20 +29,20 @@
 </style>    
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Menu</a>
+    <a class="navbar-brand">Menu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">acceuille</a>
+          <a class="nav-link" aria-current="page" href="/">acceuille</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">voir les articles </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">s'inscrire</a>
+          <a class="nav-link" href="/login">s'inscrire</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">se connecter</a>

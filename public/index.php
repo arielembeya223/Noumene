@@ -12,7 +12,11 @@ $router->map('GET', '/[a:auteur]/[a:name]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');
   //
-
+//page d' inscription
+$router->map('GET', '/login', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
+  }, 'login');
+  //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){
@@ -20,7 +24,6 @@ if(is_array($match)){
     global $params;
     $params= $match['params'];
     $match['target']();
-    
 }else{
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/404.php';
 }

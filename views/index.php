@@ -9,12 +9,11 @@ global $router;
 $limit=10;
 $pdo=new  Getpdo;
 $db=$pdo::connect();
-$req="SELECT * FROM article";
+$req="SELECT * FROM article ORDER by created_at DESC";
 $totals=new Querybulder($db);
 $total=$totals->count('id','article');
 $paginates=ceil($total/$limit);
 $page=$_GET["page"]??1;
-
 if(($page>$paginates)|| ($page<=0)){
   $page=1;
   header('Location:' . $router->generate('home'));

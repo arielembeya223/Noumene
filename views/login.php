@@ -2,7 +2,9 @@
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use App\Getpdo;
 use App\Users;
-$errors= null;
+use App\Session;
+$session = new Session();
+$session->start();
 if(!empty($_GET)){
     $name=$_GET['username'];
     $email=$_GET["email"];
@@ -11,17 +13,25 @@ if(!empty($_GET)){
     $db=new Getpdo();
     $pdo=$db::connect();
     $users= new Users($pdo,$name,$email,$password,$confirme);
-    $users->verify();
+    $verify=$users->verify();
+    $users->insert("users");
+     if($verify["type"] === "sucess"){
+         $users->flashMessage($users->verify());
+     }else{
+       $users->flashMessage($users->verify());
+     }
 }
-
-
-
 ?>
-<?php if(!empty($users->verify())):?>
-<div class="alert alert-danger" role="alert">
-  This is a danger alert—check it out!
-</div>
+<?php if (!empty($_SESSION["flash"])):?>
+           <div class="alert alert-<?=$_SESSION["flash"]["type"]?>" role="alert">
+                  <ul>
+                      <?php foreach($_SESSION["flash"] as $type => $message):?>
+                        <li><?=$message?></li>
+                      <?php endforeach ?>
+                 </ul>
+           </div>
 <?php endif ?>
+<?php unset($_SESSION["flash"])?>
 <div id="login">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -30,7 +40,7 @@ if(!empty($_GET)){
                         <form id="login-form" class="form" action="" method="GET">
                             <h3 class="text-center text-success">s'inscrire</h3>
                             <div class="form-group">
-                                <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer</div>
+                                <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer, evitez de mettre des espaces</div>
                                 <label for="username" class="text-success">Nom:</label><br>
                                 <input type="text" name="username" id="username" class="form-control regex-nom" placeholder="pseudo"   required>
                             </div>

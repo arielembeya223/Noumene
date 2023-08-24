@@ -17,6 +17,11 @@ $router->map('GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
   }, 'login');
   //
+  //page de connection
+  $router->map('GET', '/[i:id]/[a:token]', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
+  }, 'connect');
+  //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){

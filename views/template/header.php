@@ -1,4 +1,9 @@
-<?php global $title ;?>
+<?php
+use App\Session;
+require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . "vendor/autoload.php";
+$session = new Session();
+$session->start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,16 +20,6 @@
 <style>
   body{
     font-family: "Times New Roman";
-  }
-  .nobull{
-    display:none;
-  }
-  .bull{
-    display:fixed;
-    height:20px;
-    width:200px;
-    background-color: yellow;
-    color:blueviolet;
   }
 </style>    
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">

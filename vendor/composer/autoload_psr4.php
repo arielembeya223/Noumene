@@ -9,6 +9,7 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'PHLAK\\StrGen\\' => array($vendorDir . '/phlak/strgen/src'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
     'App\\' => array($baseDir . '/App'),
 );

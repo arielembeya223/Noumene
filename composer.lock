@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92bf3f0bd7499ee06c037a6707fc54c6",
+    "content-hash": "9178958cd85b73bc37f59b46281edc08",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -133,6 +133,57 @@
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.23.0"
             },
             "time": "2023-06-12T08:44:38+00:00"
+        },
+        {
+            "name": "phlak/strgen",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHLAK/StrGen.git",
+                "reference": "652ff7395f6a515a8b9baf1ac60bc6abf921477f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHLAK/StrGen/zipball/652ff7395f6a515a8b9baf1ac60bc6abf921477f",
+                "reference": "652ff7395f6a515a8b9baf1ac60bc6abf921477f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHLAK\\StrGen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Kankiewicz",
+                    "email": "Chris@ChrisKankiewicz.com",
+                    "homepage": "https://www.chriskankiewicz.com"
+                }
+            ],
+            "description": "Generate secure random strings (e.g. passwords / salts)",
+            "keywords": [
+                "generation",
+                "password",
+                "salt",
+                "string"
+            ],
+            "support": {
+                "issues": "https://github.com/PHLAK/StrGen/issues",
+                "source": "https://github.com/PHLAK/StrGen/tree/master"
+            },
+            "time": "2018-01-25T03:29:33+00:00"
         },
         {
             "name": "psr/container",

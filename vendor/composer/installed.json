@@ -135,6 +135,60 @@
             "install-path": "../fakerphp/faker"
         },
         {
+            "name": "phlak/strgen",
+            "version": "3.0.0",
+            "version_normalized": "3.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHLAK/StrGen.git",
+                "reference": "652ff7395f6a515a8b9baf1ac60bc6abf921477f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHLAK/StrGen/zipball/652ff7395f6a515a8b9baf1ac60bc6abf921477f",
+                "reference": "652ff7395f6a515a8b9baf1ac60bc6abf921477f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpunit/phpunit": "^5.7"
+            },
+            "time": "2018-01-25T03:29:33+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "PHLAK\\StrGen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Kankiewicz",
+                    "email": "Chris@ChrisKankiewicz.com",
+                    "homepage": "https://www.chriskankiewicz.com"
+                }
+            ],
+            "description": "Generate secure random strings (e.g. passwords / salts)",
+            "keywords": [
+                "generation",
+                "password",
+                "salt",
+                "string"
+            ],
+            "support": {
+                "issues": "https://github.com/PHLAK/StrGen/issues",
+                "source": "https://github.com/PHLAK/StrGen/tree/master"
+            },
+            "install-path": "../phlak/strgen"
+        },
+        {
             "name": "psr/container",
             "version": "2.0.2",
             "version_normalized": "2.0.2.0",

@@ -21,6 +21,7 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         'P' => 
         array (
             'Psr\\Container\\' => 14,
+            'PHLAK\\StrGen\\' => 13,
         ),
         'F' => 
         array (
@@ -44,6 +45,10 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHLAK\\StrGen\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phlak/strgen/src',
         ),
         'Faker\\' => 
         array (

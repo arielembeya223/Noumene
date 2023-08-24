@@ -60,6 +60,23 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'SecurityLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/security-lib/lib',
+            ),
+        ),
+        'R' => 
+        array (
+            'RandomLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -70,6 +87,7 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit00f954cb4545024c9a669a6363e7e46c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit00f954cb4545024c9a669a6363e7e46c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit00f954cb4545024c9a669a6363e7e46c::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit00f954cb4545024c9a669a6363e7e46c::$classMap;
 
         }, null, ClassLoader::class);

@@ -8,6 +8,7 @@
         "altorouter/altorouter": "^2.0",
             "fakerphp/faker": "^1.23",
     "symfony/var-dumper": "^6.3",
-    "phlak/strgen": "^3.0"
+    "phlak/strgen": "^3.0",
+    "ircmaxell/random-lib": "^1.2"
     }
 }

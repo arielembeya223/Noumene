@@ -5,6 +5,7 @@ use App\Users;
 use App\Session;
 $session = new Session();
 $session->start();
+$var = null;
 if(!empty($_GET)){
     $name=$_GET['username'];
     $email=$_GET["email"];
@@ -14,12 +15,13 @@ if(!empty($_GET)){
     $pdo=$db::connect();
     $users= new Users($pdo,$name,$email,$password,$confirme);
     $verify=$users->verify();
-    $users->insert("users");
-     if($verify["type"] === "sucess"){
+     if($verify["type"] === "success"){
+        $users->insert("users");
+        $users->mail();
          $users->flashMessage($users->verify());
      }else{
        $users->flashMessage($users->verify());
-     }
+     } 
 }
 ?>
 <?php if (!empty($_SESSION["flash"])):?>

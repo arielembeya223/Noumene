@@ -3,6 +3,7 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use App\Getpdo;
 use App\Users;
 use App\Session;
+global $router;
 $session = new Session();
 $session->start();
 $var = null;

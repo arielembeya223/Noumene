@@ -18,8 +18,8 @@ $router->map('GET', '/login', function() {
   }, 'login');
   //
   //page de connection
-  $router->map('GET', '/[i:id]/[a:token]', function() {
-    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
+  $router->map('GET', '/[i:id]-[a:token]', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connect.php';
   }, 'connect');
   //
 $match = $router->match();

@@ -50,7 +50,7 @@ class Users{
             $new_password= new Hash();
             $password=$new_password::crypte($this->password);
             $newtoken=$this->token->getGenerator(new SecurityLib\Strength(SecurityLib\Strength::MEDIUM));
-            $token=$newtoken->generateString(35, 'abcdeffghtz');
+            $token=$newtoken->generateString(40, 'abcdeffghijkmnopqrstuvwxxyz');
             $token_at=$this->token_at->format('Y-m-d H:i:s');
             $req=$this->pdo->prepare("INSERT INTO $table SET name=:name,email=:email,password=:password,token=:token,token_at=:token_at");
             $req->execute([
@@ -66,7 +66,7 @@ class Users{
             $to=$this->email;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= 'From: <Noumene.com>' . "\r\n";
+            $headers .= 'From: noumene6@gmail.com' . "\r\n";
             $msg ="
             <h1>Noumene<h1>\n
              <p>afin de s'assurer que s est bien vous qui avez essaye de vous connecter clickez sur ce lien <p>\n

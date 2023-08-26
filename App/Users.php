@@ -15,6 +15,9 @@ class Users{
     public $password_confirm;
     public $token;
     public $token_at;
+    public $token_lien;
+    public $lastId;
+    public $site="http://localhost:8000/";
     public function __construct(PDO $pdo, string $name, string $email,string $password,string $password_confirm)
     {
         $this->pdo=$pdo;
@@ -35,7 +38,7 @@ class Users{
             $error["email"]="email invalide";
         }
         if($this->password !== $this->password_confirm){
-            $error["password"]="le mot passe que vous avez confirme ne  correspond pas au mot de passe que vous avez ecrit";
+            $error["password"]="le mot  de passe que vous avez confirme ne  correspond pas au mot de passe que vous avez ecrit";
         }
          if(!empty($error)){
             $error["type"]="danger";
@@ -47,22 +50,29 @@ class Users{
          }
         }
         public function insert(string $table){
+            
             $new_password= new Hash();
             $password=$new_password::crypte($this->password);
             $newtoken=$this->token->getGenerator(new SecurityLib\Strength(SecurityLib\Strength::MEDIUM));
-            $token=$newtoken->generateString(40, 'abcdeffghijkmnopqrstuvwxxyz');
+            $this->token_lien=$newtoken->generateString(40, 'abcdeffghijkmnopqrstuvwxxyz');
             $token_at=$this->token_at->format('Y-m-d H:i:s');
             $req=$this->pdo->prepare("INSERT INTO $table SET name=:name,email=:email,password=:password,token=:token,token_at=:token_at");
             $req->execute([
                 "name"=>$this->name,
                 "email"=>$this->email,
                 "password"=>$password,
-                "token"=>$token,
+                "token"=>$this->token_lien,
                 "token_at"=>$token_at
             ]);
+            $this->lastId=$this->pdo->lastInsertId();
             return $req;
         }
+         public function getUrl(){
+         $liens=$this->site . $this->lastId . "-" . $this->token_lien;
+         return $liens;
+        }
         public function mail(){
+            $url= $this->getUrl();
             $to=$this->email;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -70,7 +80,7 @@ class Users{
             $msg ="
             <h1>Noumene<h1>\n
              <p>afin de s'assurer que s est bien vous qui avez essaye de vous connecter clickez sur ce lien <p>\n
-             <a>ici<a>\n
+             <a href='$url'>cliquez ici <a>\n
             ";
              mail($to,"confirmation de demande d'inscription a Noumene",$msg, $headers);
         }

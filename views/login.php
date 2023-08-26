@@ -29,7 +29,11 @@ if(!empty($_GET)){
            <div class="alert alert-<?=$_SESSION["flash"]["type"]?>" role="alert">
                   <ul>
                       <?php foreach($_SESSION["flash"] as $type => $message):?>
-                        <li><?=$message?></li>
+                         <?php if(($message === "success") || ($message === "danger")):?>
+                            <div class="d-none"><?=$message?></div>
+                         <?php else:?>
+                            <li><?=$message?></li>
+                         <?php endif ?>
                       <?php endforeach ?>
                  </ul>
            </div>

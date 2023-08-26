@@ -1,5 +1,6 @@
 <?php
  require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+ use App\connexion;
  use App\Getpdo;
  global $params;
   global $router;
@@ -12,9 +13,12 @@ $prepare->execute([
     "id"=>$id,
     "token"=>$token
 ]);
-$results=$prepare->fetch(PDO::FETCH_OBJ);
+$results=$prepare->fetch(PDO::FETCH_ASSOC);
 if($results){
-    dd($results);
+    $connexion = new connexion($results);
+    $connexion->init();
+    $name = $_SESSION["auth"]["name"];
+    header("Location:" . $router->generate("compte",["auteur"=>$name]));
 }else{
     require "404.php";
 }

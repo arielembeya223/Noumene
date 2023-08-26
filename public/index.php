@@ -22,6 +22,11 @@ $router->map('GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connect.php';
   }, 'connect');
   //
+  //page de compte
+  $router->map('GET', '/[a:auteur]', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/compte.php';
+  }, 'compte');
+  //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){

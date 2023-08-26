@@ -36,17 +36,21 @@ $session->start();
         <li class="nav-item">
           <a class="nav-link" href="#">voir les articles </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">s'inscrire</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">se connecter</a>
-        </li>
+        <?php if (empty($_SESSION["auth"])):?>
+          <li class="nav-item">
+             <a class="nav-link" href="/login">s'inscrire</a>
+          </li>
+        <?php endif ?>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="nom d'utilisateur" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">chercher</button>
-      </form>
+      <?php if (!empty($_SESSION["auth"])):?>
+         <div class="d-flex" role="search">
+            <a class="btn btn-outline-success" href="/">se deconnecter</a>
+         </div>
+       <?php else:?> 
+          <div class="d-flex" role="search">
+            <a class="btn btn-outline-success" href="/">se connecter</a>
+         </div>
+      <?php endif ?>
     </div>
   </div>
 </nav>

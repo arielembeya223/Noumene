@@ -7,7 +7,9 @@ let links = document.querySelectorAll(".nav-link")
             for(let nav of links){
                 nav.classList.remove("text-success")
             }
+            link.classList.remove("nav-link")
             link.classList.add("text-success")
+            e.preventDefault();
         })
       }
     }

@@ -40,17 +40,23 @@ $session->start();
           <li class="nav-item">
              <a class="nav-link" href="/login">s'inscrire</a>
           </li>
+          <?php else: ?>
+            <li class="nav-item">
+             <a class="nav-link" href="/users/compte/<?=$_SESSION["auth"]["name"]?>">Mon compte</a>
+          </li>
         <?php endif ?>
       </ul>
       <?php if (!empty($_SESSION["auth"])):?>
-         <div class="d-flex" role="search">
-            <a class="btn btn-outline-success" href="/">se deconnecter</a>
+         <div class="d-flex">
+            <a class="btn btn-outline-success deconect"  data-bs-toggle="modal" data-bs-target="#example">se deconnecter</a>
          </div>
        <?php else:?> 
-          <div class="d-flex" role="search">
-            <a class="btn btn-outline-success" href="/">se connecter</a>
+          <div class="d-flex">
+            <a class="btn btn-outline-success" href="/connexion">se connecter</a>
          </div>
       <?php endif ?>
     </div>
   </div>
 </nav>
+
+

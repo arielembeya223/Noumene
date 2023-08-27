@@ -27,6 +27,9 @@ let links = document.querySelectorAll(".nav-link")
      }
         })
     }
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
     headers()
     form()
 </script>

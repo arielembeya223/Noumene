@@ -1,10 +1,8 @@
 <?php
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
-
 use App\Getpdo;
 use App\LittleContent;
 use App\Querybulder;
-
 global $router;
 $limit=10;
 $pdo=new  Getpdo;

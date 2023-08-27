@@ -17,15 +17,20 @@ $router->map('GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
   }, 'login');
   //
-  //page de connection
+  //page d'inscription
   $router->map('GET', '/[i:id]-[a:token]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connect.php';
   }, 'connect');
   //
   //page de compte
-  $router->map('GET', '/[a:auteur]', function() {
+  $router->map('GET', '/users/compte/[a:name]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/compte.php';
   }, 'compte');
+  //
+  //page de connexion
+  $router->map('GET', '/connexion', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connexion.php';
+  }, 'connexion');
   //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';

@@ -1,5 +1,6 @@
 <?php
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+use App\Redirect;
 use App\Getpdo;
 use App\Users;
 use App\Session;
@@ -7,6 +8,10 @@ global $router;
 $session = new Session();
 $session->start();
 $var = null;
+if(!empty($_SESSION["auth"])){
+$redirect=new Redirect("" . $router->generate("compte",["name"=>$_SESSION["name"]]));
+$redirect->go();
+}
 if(!empty($_GET)){
     $name=$_GET['username'];
     $email=$_GET["email"];
@@ -15,14 +20,11 @@ if(!empty($_GET)){
     $db=new Getpdo();
     $pdo=$db::connect();
     $users= new Users($pdo,$name,$email,$password,$confirme);
-    $verify=$users->verify();
-     if($verify["type"] === "success"){
+    $users->flashMessage($users->verify());
+     if($_SESSION["flash"]["type"] === "success"){
         $users->insert("users");
         $users->mail();
-         $users->flashMessage($users->verify());
-     }else{
-       $users->flashMessage($users->verify());
-     } 
+     }
 }
 ?>
 <?php if (!empty($_SESSION["flash"])):?>

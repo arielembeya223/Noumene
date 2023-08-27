@@ -28,9 +28,29 @@ class Users{
          $this->token= new RandomLib\Factory;
          $this->token_at=new DateTime();
     }
+    public function flashMessage(array $array=[]){
+        $session = new Session();
+        $session->start();
+       $_SESSION["flash"]=$array;
+       return $_SESSION["flash"];
+    }
     public function verify():array{
         $error=[];
         $sucess=[];
+        $name=$this->name;
+        $query=(int)($this->pdo->query("SELECT count(id) FROM users")->fetch()[0]);
+        if($query>=1){
+        $offset=$query;
+        }else{
+            $offset=0;
+        }
+        $pdo=$this->pdo->query("SELECT name FROM users LIMIT $offset OFFSET 0");
+        $fetchS=$pdo->fetchAll(PDO::FETCH_NUM);
+        foreach($fetchS as $fetch){
+        if(in_array($name,$fetch)){
+            $error["username"]="ce nom est deja utilise veuillez le changer";
+         }
+        }
         if(preg_match("#[^AZa-z0-9_\.]#", $this->name)){
         $error["username"] = "veuillez changer le format de votre nom";
         }
@@ -84,10 +104,4 @@ class Users{
             ";
              mail($to,"confirmation de demande d'inscription a Noumene",$msg, $headers);
         }
-    public function flashMessage(array $array=[]){
-        $session = new Session();
-        $session->start();
-       $_SESSION["flash"]=$array;
-       return $_SESSION["flash"];
-    }
 }

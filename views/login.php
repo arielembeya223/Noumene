@@ -24,6 +24,10 @@ if(!empty($_GET)){
      if($_SESSION["flash"]["type"] === "success"){
         $users->insert("users");
         $users->mail();
+        if(!empty($_GET["remember"])){
+            $valeur = $users->cookie();
+           setcookie("secret",$valeur,time()+60*60*4);
+         }
      }
 }
 ?>
@@ -69,11 +73,10 @@ if(!empty($_GET)){
                                 <div class="text-danger"></div>
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-success"><span>se rappeller de moi   </span><span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <label for="remember-me" class="text-success"><span>se rappeller de moi   </span><span><input id="remember-me" name="remember" type="checkbox"></span></label><br>
                                 <input type="submit" name="submit" class="btn btn btn-success btn-md" value="creer un compte">
                                 <div class="text-success"></div>
-                            </div>
-                            
+                            </div>                  
                         </form>
                     </div>
                 </div>

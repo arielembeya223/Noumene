@@ -1,14 +1,22 @@
 <?php
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . "vendor/autoload.php";
+use App\Getpdo;
 use App\Redirect;
 use App\Session;
+use App\connexion;
+
 $session = new Session();
 $session->start();
-global $router;
 if(isset($_GET['deconnexion'])){
 unset($_SESSION["auth"]);
 $redirect=new Redirect("" . $router->generate("home"));
 $redirect->go();
+}
+if($_COOKIE["secret"]){
+  $db=new Getpdo();
+  $pdo=$db::connect();
+  $connexion = new connexion([]);
+$connexion->remember($pdo,$_COOKIE["secret"]);
 }
 ?>
 <!DOCTYPE html>
@@ -38,18 +46,18 @@ $redirect->go();
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">acceuille</a>
+          <a class="nav-link" aria-current="page" href="<?=$router->generate("home")?>">acceuille</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">voir les articles </a>
         </li>
         <?php if (empty($_SESSION["auth"])):?>
           <li class="nav-item">
-             <a class="nav-link" href="/login">s'inscrire</a>
+             <a class="nav-link" href="<?=$router->generate("login")?>">s'inscrire</a>
           </li>
           <?php else: ?>
             <li class="nav-item">
-             <a class="nav-link" href="/users/compte/<?=$_SESSION["auth"]["name"]?>">Mon compte</a>
+             <a class="nav-link" href="<?=$router->generate("compte",["name"=>$_SESSION["auth"]["name"]])?>">Mon compte</a>
           </li>
         <?php endif ?>
       </ul>
@@ -59,7 +67,7 @@ $redirect->go();
          </div>
        <?php else:?> 
           <div class="d-flex">
-            <a class="btn btn-outline-success" href="/connexion">se connecter</a>
+            <a class="btn btn-outline-success" href="<?=$router->generate("connexion")?>">se connecter</a>
          </div>
       <?php endif ?>
     </div>

@@ -104,4 +104,17 @@ class Users{
             ";
              mail($to,"confirmation de demande d'inscription a Noumene",$msg, $headers);
         }
+        private function generate(){
+        $lettre = "abcdefghijklmnopqrstuv";
+        $repeat = str_repeat($lettre,30);
+        $shuffle=str_shuffle($repeat);
+        $subs = substr($shuffle,1,15);
+        return $subs;
+        }
+        public function cookie(){
+            $three= str_shuffle("afghjiklonmg");
+           $first= $this->generate();
+            $finaly = $first . ';' . $this->lastId . ';' . $three;
+            return $finaly;
+        }
 }

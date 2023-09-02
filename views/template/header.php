@@ -12,7 +12,7 @@ unset($_SESSION["auth"]);
 $redirect=new Redirect("" . $router->generate("home"));
 $redirect->go();
 }
-if($_COOKIE["secret"]){
+if(!empty($_COOKIE["secret"])){
   $db=new Getpdo();
   $pdo=$db::connect();
   $connexion = new connexion([]);

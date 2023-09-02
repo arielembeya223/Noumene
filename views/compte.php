@@ -10,5 +10,7 @@ if(!empty($_SESSION["auth"])){
     require "404.php";
     die();
 }
+
 ?>
+
 <h1>mon compte<h1>

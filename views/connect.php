@@ -20,17 +20,20 @@ $prepare->execute([
 ]);
 $results=$prepare->fetch(PDO::FETCH_ASSOC);
 if($results){
-    $connexion = new connexion($results);
-    $connexion->init();
-    $name = $_SESSION["auth"]["name"];
+    $name = $results["name"];
      $newdb= new Getpdo();
      $newpdo= $newdb::connect();
-     $base=$newpdo->prepare("UPDATE users SET token=:token , token_at=:token_at WHERE name=:name");
-     $base->execute([
-        "token"=>NULL,
-        "token_at"=>NULL,
-        "name"=>$name
-     ]);
+     $base=$newpdo->prepare("UPDATE users SET token=NULL,token_at=NULL WHERE name=:name");
+     $base->execute(["name"=>$name]);
+     $Sdb=new Getpdo();
+     $Spdo=$Sdb::connect();
+$Sprepare = $Spdo->prepare("SELECT * FROM users WHERE id=:id");
+$Sprepare->execute([
+    "id"=>$id
+]);
+$Sresults=$Sprepare->fetch(PDO::FETCH_ASSOC);
+     $connexion = new connexion($Sresults);
+     $connexion->init();
     header("Location:" . $router->generate("compte",["name"=>$name]));
 }else{
     require "404.php";

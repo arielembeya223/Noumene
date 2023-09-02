@@ -18,6 +18,9 @@ if($fetch){
     if(password_verify($password,$real_password)){
         $connexion = new connexion($fetch);
         $connexion->init();
+        if(!empty($_GET["remember"])){
+          
+        }
         $redirect=new Redirect("" . $router->generate("compte",["name"=>$_SESSION["auth"]["name"]]));
         $redirect->go();
     }else{
@@ -42,7 +45,7 @@ $error="nom ou mot de passe incorrect";
     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="mot de passe">
   </div>
   <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
     <label class="form-check-label" for="exampleCheck1">se rappeller de moi</label>
   </div>
   <button type="submit" class="btn  btn-success">Submit</button>

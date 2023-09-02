@@ -11,11 +11,15 @@ class connexion{
     $_SESSION["auth"]=$this->array;
    }  
    public function remember(PDO $pdo,string $string){
-      $id = (int)(explode(';',$string)[1]);
-      $prepare = $pdo->prepare("SELECT * FROM users WHERE id=:id");
-      $prepare->execute(['id'=>$id]);
-      $fetch=$prepare->fetch(PDO::FETCH_ASSOC);
-      $_SESSION["auth"]=$fetch;
-      return   $_SESSION["auth"]=$fetch;
+    $id = explode(';',$string)[1];
+    $prepare = $pdo->prepare("SELECT * FROM users WHERE id=:id");
+    $prepare->execute(['id'=>$id]);
+    $fetch=$prepare->fetch(PDO::FETCH_ASSOC);
+    if($fetch["token"]=== null){
+       $_SESSION["auth"]=$fetch;
+       return  $_SESSION["auth"];
+    }else{
+      return null;
+    }
    }
 }

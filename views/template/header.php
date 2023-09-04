@@ -1,4 +1,8 @@
 <?php
+/**
+ * changer le site dans users
+ * changer l 'email dans mail et le secret dans mail
+ */
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 use App\Getpdo;
 use App\Redirect;

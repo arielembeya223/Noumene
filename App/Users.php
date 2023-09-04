@@ -7,6 +7,7 @@ use PDO;
 use App\Session;
 use PHLAK\StrGen;
 use DateTime;
+use App\Mail;
 class Users{
     public $pdo;
     public $name;
@@ -94,15 +95,13 @@ class Users{
         public function mail(){
             $url= $this->getUrl();
             $to=$this->email;
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= 'From: noumene6@gmail.com' . "\r\n";
             $msg ="
             <h1>Noumene<h1>\n
              <p>afin de s'assurer que s est bien vous qui avez essaye de vous connecter clickez sur ce lien <p>\n
              <a href='$url'>cliquez ici <a>\n
             ";
-             mail($to,"confirmation de demande d'inscription a Noumene",$msg, $headers);
+            $email=new Mail($to,"demande d'inscription au site Noumene",$msg);
+             $email->send();
         }
         private function generate(){
         $lettre = "abcdefghijklmnopqrstuv";

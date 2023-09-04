@@ -21,6 +21,7 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         'P' => 
         array (
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
             'PHLAK\\StrGen\\' => 13,
         ),
         'F' => 
@@ -45,6 +46,10 @@ class ComposerStaticInit00f954cb4545024c9a669a6363e7e46c
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'PHLAK\\StrGen\\' => 
         array (

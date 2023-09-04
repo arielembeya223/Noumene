@@ -4,11 +4,11 @@ use App\Getpdo;
 use App\Redirect;
 use App\Session;
 use App\connexion;
-
 $session = new Session();
 $session->start();
 if(isset($_GET['deconnexion'])){
 unset($_SESSION["auth"]);
+setcookie("secret",NULL,-1);
 $redirect=new Redirect("" . $router->generate("home"));
 $redirect->go();
 }

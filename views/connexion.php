@@ -19,16 +19,20 @@ if($fetch){
         $connexion = new connexion($fetch);
         $connexion->init();
         if(!empty($_GET["remember"])){
-          
+          $lettre = "abcdefghijklmnopqrstuvABCDEFGHIJQLMNOPQRSTUVWXYZ";
+        $repeat = str_repeat($lettre,30);
+        $shuffle=str_shuffle($repeat);
+        $first = substr($shuffle,1,15);
+        $second= str_shuffle($first);
+        $valeur = $first . ';' . $fetch["id"] . ';' . $three;
+          setcookie("secret",$valeur,time()+60*60*4);
+        }  
         }
         $redirect=new Redirect("" . $router->generate("compte",["name"=>$_SESSION["auth"]["name"]]));
         $redirect->go();
     }else{
         $error="nom ou mot de passe incorrect";   
     }
-}else{
-$error="nom ou mot de passe incorrect";
-}
 }
 ?>
        <?php if($error):?>

@@ -32,6 +32,16 @@ $router->map('GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connexion.php';
   }, 'connexion');
   //
+  //page d'oubli de mot de passe
+  $router->map('GET', '/forgot', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/forgot.php';
+  }, 'forgot');
+  //
+  //page de changement de mot de passe
+  $router->map('GET', '/compte/modif/[i:id]', function() {
+    require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/passmodif.php';
+  }, 'modif');
+  //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){

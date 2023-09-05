@@ -52,6 +52,9 @@ if($fetch){
     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
     <label class="form-check-label" for="exampleCheck1">se rappeller de moi</label>
   </div>
+  <div class="form-group mb-2">
+   <a href="<?=$router->generate("forgot")?>" class="text-success">Mot de passe oublie</a>
+  </div>
   <button type="submit" class="btn  btn-success">Submit</button>
 </form>
 </div>

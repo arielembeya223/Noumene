@@ -2,6 +2,8 @@
 /**
  * changer le site dans users
  * changer l 'email dans mail et le secret dans mail
+ * pdo dans getpdo
+ * localhost:8000 dans forgot ligne 15
  */
 require dirname(__DIR__,2) . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 use App\Getpdo;

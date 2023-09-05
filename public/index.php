@@ -38,7 +38,7 @@ $router->map('GET', '/login', function() {
   }, 'forgot');
   //
   //page de changement de mot de passe
-  $router->map('GET', '/compte/modif/[i:id]', function() {
+  $router->map('GET', '/compte/modif/[a:reset]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/passmodif.php';
   }, 'modif');
   //

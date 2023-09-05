@@ -29,19 +29,19 @@ class Forgot{
            return  true;
         }
     }
-    public function getID()
+    public function get(string $lien)
     {
      $fetch = $this->fetch;
      $id = $fetch['id'];
-     return $id;
-    }
-    public function send(string $lien)
-    {
+     $reset = str_shuffle("AEJKLMNTahijklqwwz");
+     $prepare=$this->pdo->prepare("UPDATE users SET reset_token=:reset_token WHERE id=:id");
+     $prepare->execute(["reset_token"=>$reset,"id"=>$id]);
+     $url = $lien . $reset;
      $to = $this->fetch["email"];
      $subject = "modification de votre mot de passe Noumene";
      $content = "<h1>afin de reinitialiser votre mot de passe il est important de suivre les instructions ci-apres<h1>
      <ul>
-     <li>cliques sur ce lien  <a href='{$lien}''>ici</a><li>
+     <li>cliques sur ce lien  <a href='{$url}''>ici</a><li>
      <li>ensuite modifier votre mot de passe </li>
      </ul>";
      $mail = new Mail($to,$subject,$content);

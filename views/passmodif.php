@@ -3,17 +3,17 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use App\Getpdo;
 use App\Hash;
 global $params;
-$id=$params["id"];
+$reset=$params["reset"];
 $success=NULL;
 if(!empty($_GET["password"])){
 $db= new Getpdo();
 $pdo = $db->connect();
 $p=new Hash();
 $password = $p::crypte($_GET["password"]);
-$prepare =$pdo->prepare("UPDATE users SET password=:password WHERE id=:id");
+$prepare =$pdo->prepare("UPDATE users SET password=:password WHERE reset_token=:reset_token");
 $prepare->execute([
 "password"=>$password,
-"id"=>$id
+"reset_token"=>$reset
 ]);
 $success = " votre mot de passe vient d'etre modifie veuillez essayer de vous connecter maintenant";
 }

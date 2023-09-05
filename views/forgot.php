@@ -5,15 +5,14 @@ use App\Getpdo;
 global $router;
 $error= NULL;
 $success= NULL;
+$lien="http://localhost:8000" . $router->generate("modif");
 if(!empty($_GET['email'])){
     $db= new Getpdo;
     $pdo = $db->connect();
     $forgot = new Forgot($_GET['email'],$pdo);
     $verify= $forgot->verify();
     if($verify ===  true){
-       $id = $forgot->getID();
-       $lien = "http://localhost:8000" . $router->generate('modif',["id"=>$id]);
-       $forgot->send($lien);
+       $id = $forgot->get($lien);
        $success = "un message vous a ete envoye";
     }else{
      $error = $verify;

@@ -5,9 +5,9 @@ use App\connexion;
 use App\Redirect;
 global $router;
 $error=null;
-if(!empty($_GET)){
-$email_name=$_GET["email"];
-$password=$_GET["password"];
+if(!empty($_POST)){
+$email_name=$_POST["email"];
+$password=$_POST["password"];
 $db=new Getpdo;
 $pdo=$db::connect();
 $prepare=$pdo->prepare("SELECT * FROM users WHERE name=:input OR email=:input");
@@ -39,7 +39,7 @@ if($fetch){
         <div class="alert alert-danger" role="alert"><?=$error?></div>
        <?php endif ?>
 <div class="container">
-<form action="" method="GET">
+<form action="" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">adress email ou pseudo</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="email"  placeholder="votre adresse email ou votre pseudo">

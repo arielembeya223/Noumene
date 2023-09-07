@@ -13,7 +13,7 @@ $router->map('GET', '/[a:auteur]/[a:name]', function() {
   }, 'article');
   //
 //page d' inscription
-$router->map('GET', '/login', function() {
+$router->map('POST|GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/login.php';
   }, 'login');
   //
@@ -28,7 +28,7 @@ $router->map('GET', '/login', function() {
   }, 'compte');
   //
   //page de connexion
-  $router->map('GET', '/connexion', function() {
+  $router->map('POST|GET', '/connexion', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/connexion.php';
   }, 'connexion');
   //
@@ -42,6 +42,11 @@ $router->map('GET', '/login', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/passmodif.php';
   }, 'modif');
   //
+    // d'edification
+    $router->map('POST|GET', '/compte/edit/[a:name]', function() {
+      require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/ecrire.php';
+    }, 'ecrire');
+    //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){

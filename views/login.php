@@ -12,11 +12,11 @@ if(!empty($_SESSION["auth"])){
 $redirect=new Redirect("" . $router->generate("compte",["name"=>$_SESSION["name"]]));
 $redirect->go();
 }
-if(!empty($_GET)){
-    $name=$_GET['username'];
-    $email=$_GET["email"];
-    $password=$_GET["password"];
-    $confirme=$_GET["comfirme"];
+if(!empty($_POST)){
+    $name=$_POST['username'];
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+    $confirme=$_POST["comfirme"];
     $db=new Getpdo();
     $pdo=$db::connect();
     $users= new Users($pdo,$name,$email,$password,$confirme);
@@ -50,7 +50,7 @@ if(!empty($_GET)){
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="GET">
+                        <form id="login-form" class="form" action="" method="POST">
                             <h3 class="text-center text-success">s'inscrire</h3>
                             <div class="form-group">
                                 <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer, evitez de mettre des espaces</div>

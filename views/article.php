@@ -21,17 +21,19 @@ if(empty($resolutions)){
 } 
 
 
-if(!empty($_GET['pseudo']) && !empty($_GET['commentaire'])){
+if($_GET){
     $getpseudo=new  Getpdo;
     $getcomment=$pdo::connect(); 
+    $pseudo = $_GET['pseudo'] ?? $_SESSION["auth"]["name"];
     $precomment=$getcomment->prepare("INSERT INTO commentaires SET pseudo=:pseudo,content=:content,param_auteur=:auteur,param_name=:name");
     $precomment->execute([
-       "pseudo"=>$_GET['pseudo'],
+       "pseudo"=>$pseudo,
         "content"=>$_GET['commentaire'],
         "auteur"=>$auteur,
         "name"=>$name
     ]);
 }
+
 $getcommentparam=new  Getpdo;
 $preparation=$getcommentparam::connect();
 $commentaires=$preparation->prepare("SELECT * FROM commentaires  WHERE param_auteur=:auteur AND param_name=:name");
@@ -52,11 +54,13 @@ $finitos=$commentaires->fetchAll(PDO::FETCH_OBJ);
       <!--insertion des commentaires-->
       <h2>Les commentaires</h2>
       <form action="" method="GET">
+        <?php if(empty($_SESSION["auth"])):?>
           <div class="row mb-2">
               <div class="col-sm">
                     <input type="texte" class="form-control" id="exampleFormControlInput1" placeholder=" nom ou pseudo" name="pseudo">
                 </div> 
            </div>
+         <?php endif ?>  
             <textarea class="form-control mb-2"  id="exampleFormControlTextarea1"   style="min-height: 150px;" placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
             <input class = "btn btn btn-success me-1" type="submit"></input>
       </form>     

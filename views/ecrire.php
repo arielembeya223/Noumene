@@ -14,9 +14,16 @@ if(!empty($_SESSION["auth"])){
     require "404.php";
     die();
 }
-$categories=["culture","sciences","litterature","Poesie","Musique","Art","Informatique","info"];
+$categories=["culture","sciences","litterature","Poesie","Musique","Art","Informatique","info","sport","autre"];
 if(!empty($_POST)){
-
+$dates= new DateTime();
+$date=$dates->format('Y-m-d H:i:s');
+$name=$_POST["name"];
+$content=$_POST["content"];
+$auteur=$_SESSION["auth"]["name"];
+$slug=str_shuffle("abcdefghtyuiiiiiooopbvnchduwuw");
+$created_at=$date;
+$categorie=$_POST["categorie"];
 }
 ?>
 <div class="container">
@@ -29,15 +36,16 @@ if(!empty($_POST)){
    </div>
    <div class="form-group">
          <label for="name">contenu de l'article</label>
-         <textarea  class="form-control"></textarea>
+         <textarea  class="form-control" name="content"></textarea>
    </div>
    <div class="form-group">
          <label for="name">categorie de l'article</label>
-         <select class="form-control">
+         <select class="form-control" name="categorie">
             <?php foreach($categories as $category):?>
-            <option><?=$category?></option>
+            <option value="<?=$category?>"><?=$category?></option>
             <?php endforeach ?>
          </select>
    </div>
+   <button class="btn btn-success">Creer l'article</button>
 </form>
 </div>

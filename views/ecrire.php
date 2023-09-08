@@ -1,6 +1,7 @@
 <?php 
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use App\connexion;
+use App\Edit;
 use App\Getpdo;
 global $router;
 global $params;
@@ -14,6 +15,7 @@ if(!empty($_SESSION["auth"])){
     require "404.php";
     die();
 }
+$error=null;
 $categories=["culture","sciences","litterature","Poesie","Musique","Art","Informatique","info","sport","autre"];
 if(!empty($_POST)){
 $dates= new DateTime();
@@ -24,9 +26,23 @@ $auteur=$_SESSION["auth"]["name"];
 $slug=str_shuffle("abcdefghtyuiiiiiooopbvnchduwuw");
 $created_at=$date;
 $categorie=$_POST["categorie"];
+$edit=new Edit($name,$content);
+$verify= $edit->verify();
+if(!(is_array($verify))){
+dd("ok");
+}else{
+    $error=$verify;
+}
 }
 ?>
 <div class="container">
+<?php if ($error !== NULL):?>
+    <?php foreach($error as $e):?>
+        <div class="alert alert-danger" role="alert">
+            <?=$e?>
+        </div>
+    <?php endforeach ?>
+<?php endif ?>
 <h1 class="text-center mb2">creer un nouvel article<h1>
 <form action="" method="POST">
   <div class="form-group">

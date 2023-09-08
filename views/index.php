@@ -14,7 +14,6 @@ $paginates=ceil($total/$limit);
 $page=$_GET["page"]??1;
 if(($page>$paginates)|| ($page<=0)){
   $page=1;
-  header('Location:' . $router->generate('home'));
 }
 $offset=($page-1)*$limit;
 if(!empty($_GET['q'] )){

@@ -29,7 +29,8 @@ $categorie=$_POST["categorie"];
 $edit=new Edit($name,$content);
 $verify= $edit->verify();
 if(!(is_array($verify))){
-dd("ok");
+    $pdo=Getpdo::connect();
+    $edit->insert($pdo,$auteur,$slug,$created_at,$categorie);
 }else{
     $error=$verify;
 }
@@ -46,7 +47,7 @@ dd("ok");
 <h1 class="text-center mb2">creer un nouvel article<h1>
 <form action="" method="POST">
   <div class="form-group">
-  <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer, evitez de mettre des espaces</div>
+  <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer, evitez de mettre des espaces et des majuscules</div>
          <label for="name">Titre</label>
          <input type="text" class="form-control regex-nom" id="name" name="name">
    </div>

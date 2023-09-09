@@ -3,17 +3,18 @@ namespace App;
 use PDO;
 use DateTime;
 Class Edit{
-public $pdo;
 public $name;
 public $content;
 public $auteur;
 public $slug;
 public $created_at;
 public $categorie;
-    public function __construct(string $name,string $content)
+public $pdo;
+    public function __construct(string $name,string $content,PDO $pdo)
     {
         $this->name=$name;
         $this->content=$content;
+        $this->pdo=$pdo;
     }
     public  function verify()
     { 
@@ -30,10 +31,10 @@ public $categorie;
             return true;
         }
     }
-    public function insert(PDO $pdo,string $auteur,string $slug,$created_at,string $categorie)
+    public function insert(string $auteur,string $slug,$created_at,string $categorie)
     {$name=$this->name;
       $content=$this->content;
-      $prepare = $pdo->prepare("INSERT INTO article SET name=:name,content=:content,auteur=:auteur,slug=:slug,created_at=:created_at,categorie=:categorie");
+      $prepare = $this->pdo->prepare("INSERT INTO article SET name=:name,content=:content,auteur=:auteur,slug=:slug,created_at=:created_at,categorie=:categorie");
       $prepare->execute([
         "name"=>$name,
          "content"=>$content,
@@ -43,5 +44,21 @@ public $categorie;
          "categorie"=>$categorie
       ]);
       return $prepare;
+    } 
+    public function modif(string $auteur,string $slug,$created_at,string $categorie,int $id)
+    {
+        $name=$this->name;
+        $content=$this->content;
+        $prepare = $this->pdo->prepare("UPDATE  article SET name=:name,content=:content,auteur=:auteur,slug=:slug,created_at=:created_at,categorie=:categorie WHERE id=:id");
+        $prepare->execute([
+          "name"=>$name,
+           "content"=>$content,
+           "auteur"=>$auteur,
+           "slug"=>$slug,
+           "created_at"=>$created_at,
+           "categorie"=>$categorie,
+           "id"=>$id
+        ]);
+        return $prepare;
+      }    
     }
-}

@@ -27,11 +27,11 @@ $auteur=$_SESSION["auth"]["name"];
 $slug=str_shuffle("abcdefghtyuiiiiiooopbvnchduwuw");
 $created_at=$date;
 $categorie=$_POST["categorie"];
-$edit=new Edit($name,$content);
+$pdo=Getpdo::connect();
+$edit=new Edit($name,$content,$pdo);
 $verify= $edit->verify();
 if(!(is_array($verify))){
-    $pdo=Getpdo::connect();
-    $edit->insert($pdo,$auteur,$slug,$created_at,$categorie);
+    $edit->insert($auteur,$slug,$created_at,$categorie);
     $lien = $router->generate("article",["auteur"=>$auteur,"name"=>$name]);
     $success="bravo ! votre article est en ligne voici le lien pour le consulter ";
 }else{

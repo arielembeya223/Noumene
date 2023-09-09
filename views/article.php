@@ -43,6 +43,11 @@ $commentaires->execute([
 ]);
 $finitos=$commentaires->fetchAll(PDO::FETCH_OBJ);
 ?>
+<?php 
+foreach($resolutions as $resolution){
+  $title=$resolution->name;
+}
+require "nav.php"?>
 <div class="container">
   <article> 
       <!--gestion de l'affichage d'article-->

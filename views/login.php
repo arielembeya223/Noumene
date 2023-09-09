@@ -31,6 +31,7 @@ if(!empty($_POST)){
      }
 }
 ?>
+<?php require "nav.php"?>
 <?php if (!empty($_SESSION["flash"])):?>
            <div class="alert alert-<?=$_SESSION["flash"]["type"]?>" role="alert">
                   <ul>

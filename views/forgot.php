@@ -12,7 +12,7 @@ if(!empty($_GET['email'])){
     $forgot = new Forgot($_GET['email'],$pdo);
     $verify= $forgot->verify();
     if($verify ===  true){
-       $id = $forgot->get($lien);
+       $forgot->get($lien);
        $success = "un message vous a ete envoye";
     }else{
      $error = $verify;
@@ -20,6 +20,7 @@ if(!empty($_GET['email'])){
 }
 
 ?>
+<?php require "nav.php"?>
 <?php if($error !== NULL):?>
     <div class="alert alert-danger" role="alert">
         <?php echo $error?>

@@ -14,17 +14,19 @@ $paginates=ceil($total/$limit);
 $page=$_GET["page"]??1;
 if(($page>$paginates)|| ($page<=0)){
   $page=1;
+  header("Location:"  . $router->generate("home"));
 }
 $offset=($page-1)*$limit;
 if(!empty($_GET['q'] )){
-  $req_extens= " WHERE name  LIKE  " .  "'%" . htmlentities($_GET['q']) . "%'" . "OR auteur LIKE  " .  "'%" . htmlentities($_GET['q']) . "%'";
-  $req = $req . $req_extens;
+  $req_extens= " WHERE name  LIKE  " .  "\"%" . htmlentities($_GET['q']) . "%\"" . "OR auteur LIKE  " .  "'%" . htmlentities($_GET['q']) . "%'";
+  $continue = "ORDER by created_at DESC";
+  $req= "SELECT * FROM article " . $req_extens . $continue;
 }
 $req=$req . " LIMIT $limit OFFSET $offset";
 $contents=$db->query($req)->fetchAll(PDO::FETCH_OBJ);
 $count=count($contents);
 ?>
-
+<?php require "nav.php"?>
 <section class="header1 cid-s6S0y5nekw mbr-fullscreen " id="header01-0">
     <div class="align-center container-fluid">
         <div class="row justify-content-center">

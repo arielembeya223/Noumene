@@ -39,4 +39,4 @@ $Sresults=$Sprepare->fetch(PDO::FETCH_ASSOC);
     require "404.php";
 }
  ?>
-
+<?php require "nav.php"?>

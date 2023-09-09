@@ -18,10 +18,10 @@ public $categorie;
     public  function verify()
     { 
         $error=[];
-        if(preg_match("#[^AZa-z0-9_\.]#", $this->name)){
-            $error["name"] = "essayer de changer le nom de l'article ,eviter les esspaces et les majuscules";
+        if(preg_match("#[^AZa-z0-9\.]#", $this->name)){
+            $error["name"] = "essayer de changer le nom de l'article ,eviter les esspaces ,les majuscules et les underscores";
         }
-        if(strlen($this->content)<=20){
+        if(strlen($this->content)<=60){
            $error["content"] = "le contenue de l'article est trop petit";
         }
         if(!empty($error)){

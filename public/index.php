@@ -47,6 +47,11 @@ $router->map('POST|GET', '/login', function() {
       require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/ecrire.php';
     }, 'ecrire');
     //
+    //modification d'article
+    $router->map('POST|GET', '/compte/edit/modif/[a:name]', function() {
+      require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/modif.php';
+    }, 'modification');
+    //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';
 if(is_array($match)){

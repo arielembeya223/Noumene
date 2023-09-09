@@ -1,6 +1,7 @@
 <?php 
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use App\Getpdo;
+use App\LittleContent;
 global $router;
 global $params;
 $name=$params["name"];
@@ -13,15 +14,39 @@ if(!empty($_SESSION["auth"])){
     require "404.php";
     die();
 }
+$auteur=$_SESSION["auth"]["name"];
 $pdo = Getpdo::connect();
+$prepare = $pdo->prepare("SELECT * FROM article WHERE auteur=:auteur");
+$prepare->execute(["auteur"=>$auteur]);
+$contents=$prepare->fetchAll(PDO::FETCH_OBJ);
 ?>
+<?php require "nav.php"?>
 <div class="container">
      <div class="text-center mb2 mt-5">
         <h1><?=$_SESSION["auth"]["name"]?><h1>
         <a class="btn btn-success" href="<?=$router->generate("ecrire",["name"=>$_SESSION["auth"]["name"]])?>">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-       <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-       </svg>ecrire un article
-    </a>
-</div>   
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+           <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+           </svg>ecrire un article
+       </a>
+       <?php if($contents):?>
+       <h1>vos articles</h1>
+       <?php endif?>
+     </div>   
 </div>
+<main class="d-flex justify-content-center   flex-wrap">
+<?php foreach($contents as  $content): ?>
+  <?php $extrait= new LittleContent($content->content)?>
+  <div class="" data-toggle="tooltip" data-placement="top" title="<?="contenue  lié  à la " . $content->categorie?>">
+     <div class="card m-5 rounded border border-success" id="card" style="width: 18rem;">
+       <div class="card-body">
+         <h5 class="card-title"><?=$content->name?>  <a href="<?=$router->generate("modification",['name'=>$content->name])?>" class="m-5 p-2">modifier</a></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><?=$content->auteur?></h6>
+        <p class="card-text"><?=$extrait->extrait()?></p>
+        <a class="card-link"><?=$content->created_at?></a>
+        <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="card-link">lire l'article</a>
+       </div>
+     </div>
+   </div>
+<?php endforeach ?>
+</main>

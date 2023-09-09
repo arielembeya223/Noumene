@@ -16,6 +16,7 @@ if(!empty($_SESSION["auth"])){
     die();
 }
 $error=null;
+$success=null;
 $categories=["culture","sciences","litterature","Poesie","Musique","Art","Informatique","info","sport","autre"];
 if(!empty($_POST)){
 $dates= new DateTime();
@@ -31,11 +32,14 @@ $verify= $edit->verify();
 if(!(is_array($verify))){
     $pdo=Getpdo::connect();
     $edit->insert($pdo,$auteur,$slug,$created_at,$categorie);
+    $lien = $router->generate("article",["auteur"=>$auteur,"name"=>$name]);
+    $success="bravo ! votre article est en ligne voici le lien pour le consulter ";
 }else{
     $error=$verify;
 }
 }
 ?>
+<?php require "nav.php"?>
 <div class="container">
 <?php if ($error !== NULL):?>
     <?php foreach($error as $e):?>
@@ -44,10 +48,15 @@ if(!(is_array($verify))){
         </div>
     <?php endforeach ?>
 <?php endif ?>
+<?php if ($success !== NULL):?>
+        <div class="alert alert-success" role="alert">
+            <?=$success ?> <a href="<?=$lien?>">votre article</a>
+        </div>
+<?php endif ?>
 <h1 class="text-center mb2">creer un nouvel article<h1>
 <form action="" method="POST">
   <div class="form-group">
-  <div class=" d-none text-danger regex-ajout">mauvais format de nom veuillez le changer, evitez de mettre des espaces et des majuscules</div>
+  <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de nom veuillez le changer, evitez de mettre des espaces les majuscules et les underscores</div>
          <label for="name">Titre</label>
          <input type="text" class="form-control regex-nom" id="name" name="name">
    </div>

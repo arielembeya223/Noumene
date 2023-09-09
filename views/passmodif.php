@@ -18,6 +18,7 @@ $prepare->execute([
 $success = " votre mot de passe vient d'etre modifie veuillez essayer de vous connecter maintenant";
 }
 ?>
+<?php require "nav.php"?>
 <div class="container">
 <?php if($success !== NULL):?>
     <div class="alert alert-success" role="alert">

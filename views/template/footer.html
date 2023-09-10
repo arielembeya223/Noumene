@@ -29,8 +29,20 @@ let links = document.querySelectorAll(".nav-link")
      }
         })
     }
+    function autogrow(){
+      let textarea= document.querySelector(".autogrow")
+      textarea.addEventListener("focus",function(e){
+        textarea.style.overflow="hidden"
+        textarea.style.height=textarea.scrollHeight + "px";
+      })
+      textarea.addEventListener("input",function(e){
+        textarea.style.overflow="hidden"
+        textarea.style.height=textarea.scrollHeight + "px";
+      })
+    }
     form()
-/*
+    autogrow()
+/*  
     $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })

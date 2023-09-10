@@ -43,11 +43,11 @@ if($fetch){
 <form action="" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">adress email ou pseudo</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="email"  placeholder="votre adresse email ou votre pseudo">
+    <input type="text" class="form-control" id="exampleInputEmail1" name="email"  placeholder="votre adresse email ou votre pseudo" required>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="mot de passe">
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="mot de passe" required>
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">

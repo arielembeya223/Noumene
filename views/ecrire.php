@@ -58,11 +58,11 @@ if(!(is_array($verify))){
   <div class="form-group">
   <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de nom veuillez le changer, evitez de mettre des espaces les majuscules et les underscores</div>
          <label for="name">Titre</label>
-         <input type="text" class="form-control regex-nom" id="name" name="name">
+         <input type="text" class="form-control regex-nom" id="name" name="name" required>
    </div>
    <div class="form-group">
          <label for="name">contenu de l'article</label>
-         <textarea  class="form-control" name="content"></textarea>
+         <textarea  class="form-control  autogrow" name="content" style="min-height:100px" required></textarea>
    </div>
    <div class="form-group">
          <label for="name">categorie de l'article</label>

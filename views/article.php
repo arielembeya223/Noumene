@@ -66,14 +66,14 @@ require "nav.php"?>
                 </div> 
            </div>
          <?php endif ?>  
-            <textarea class="form-control mb-2"  id="exampleFormControlTextarea1"   style="min-height: 150px;" placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
+            <textarea class="form-control  autogrow mb-2"  id="exampleFormControlTextarea1"   style="min-height: 150px;" placeholder="laissez nous un commentaire !"  name="commentaire"></textarea>
             <input class = "btn btn btn-success me-1" type="submit"></input>
       </form>     
             <!-- gestion des commentaires-->   
         <?php foreach($finitos as $finito):?>
                 <article class="mb-4">
                     <div class="mb-1"><strong class="js-username"><?=$finito->pseudo?></strong></div>
-                    <p class="js-content"><?=$finito->content?></p>
+                    <p class="js-content"><?=nl2br($finito->content)?></p>
                 </article>
          <?php endforeach ?>
              <!---->

@@ -47,7 +47,9 @@ $count=count($contents);
 </section>
 <section class="features6 cid-s6S1tUtSWp" id="features06-e">
   <?php if(empty($_GET['q'])):?>
- <h1 class="text-md-center mt-5">les derniers aricles</h1>
+    <div class="text-center">
+            <h1 class="text-md-center mt-5">les derniers aricles</h1>
+    </div>
   <?php endif?>
   <?php if(!empty($_GET['q']) && ($count != 0)):?>
  <h3 class="text-md-center mt-5">les resultats de votre recherche</h3>
@@ -64,7 +66,7 @@ $count=count($contents);
          <h5 class="card-title"><?=$content->name?></h5>
         <h6 class="card-subtitle mb-2 text-muted"><?=$content->auteur?></h6>
         <p class="card-text"><?=$extrait->extrait()?></p>
-        <a class="card-link"><?=$content->created_at?></a>
+        <span class="badge bg-light text-muted" data-ago="<?=$content->created_at?>" id="time"><?=$content->created_at?></span>
         <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="card-link">lire l'article</a>
        </div>
      </div>
@@ -86,5 +88,34 @@ $count=count($contents);
   </ul>
 </nav>
 <?php endif?>
-
+<script type="text/javascript">  
+ function ago(){
+       let agos = document.querySelectorAll("[data-ago]");
+        for(let ago of agos ){
+          let data=ago.dataset.ago
+          let annee=data.split("-")[0]
+          let mois=data.split("-")[1]
+          let parti2=data.split("-")[2]
+          let jour= parti2.split(" ")[0]
+          let his=parti2.split(" ")[1]
+          let heure=his.split(":")[0]
+          let min=his.split(":")[1]
+          let sec=his.split(":")[2]
+          let year = new Date().getFullYear()
+          let month=new Date().getMonth()+1
+          let date=new Date().getDate()
+          let hours=new Date().getHours()
+          let minute=new Date().getMinutes()
+          let seconde=new Date().getSeconds()
+          let message = "maintenant"
+          let A= (year-annee)
+          let M=(month-mois)
+          let H = (hours-heure)
+          let Mi = (minute-min)
+          let S = (seconde-sec)
+         console.log(A,M,H,Mi,S)
+        }
+       }
+       ago()
+  </script>
 

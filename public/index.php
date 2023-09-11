@@ -51,6 +51,20 @@ $router->map('POST|GET', '/login', function() {
     $router->map('POST|GET', '/compte/edit/modif/[a:name]', function() {
       require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/modif.php';
     }, 'modification');
+    //regle et condition d'utilisation
+    $router->map('POST|GET', '/compte/users/regle', function() {
+      require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/regle.php';
+    }, 'regle');
+    //
+    //dashbord
+        $router->map('POST|GET', '/compte/users/controle/dashbord', function() {
+          require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/dashbord.php';
+        }, 'dashbord');
+    //
+    //dashbord verification
+    $router->map('POST|GET', '/compte/users/controle/login', function() {
+      require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/dashLogin.php';
+    }, 'dashLogin');
     //
 $match = $router->match();
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/template/header.php';

@@ -28,7 +28,7 @@
           <a class="nav-link" aria-current="page" href="<?=$router->generate("home")?>">acceuille</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?=$router->generate("regle")?>">Regle et conditions d'utilisation</a>
+          <a class="nav-link" href="<?=$router->generate("regle")?>">Documentation</a>
         </li>
         <?php if (empty($_SESSION["auth"])):?>
           <li class="nav-item">

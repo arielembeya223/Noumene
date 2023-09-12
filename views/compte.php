@@ -36,17 +36,12 @@ $contents=$prepare->fetchAll(PDO::FETCH_OBJ);
 </div>
 <main class="d-flex justify-content-center   flex-wrap">
 <?php foreach($contents as  $content): ?>
-  <?php $extrait= new LittleContent($content->content)?>
-  <div class="" data-toggle="tooltip" data-placement="top" title="<?="contenue  lié  à la " . $content->categorie?>">
-     <div class="card m-5 rounded border border-success" id="card" style="width: 18rem;">
-       <div class="card-body">
-         <h5 class="card-title"><?=$content->name?>  <a href="<?=$router->generate("modification",['name'=>$content->name])?>" class="m-5 p-2">modifier</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><?=$content->auteur?></h6>
-        <p class="card-text"><?=$extrait->extrait()?></p>
-        <a class="card-link"><?=$content->created_at?></a>
-        <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="card-link">lire l'article</a>
-       </div>
-     </div>
-   </div>
+  <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
+  <div class="card-header"><div class="text-center"><?=$content->name?></div></div>
+  <div class="card-body">
+    <h5 class="card-title text-center"><a href="<?=$router->generate("modification",['name'=>$content->name])?>"  class="btn btn-success">modifier l'article</a></h5>
+    <p class="card-text"> <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="btn btn-success">lire l'article</a></p>
+  </div>
+</div>
 <?php endforeach ?>
 </main>

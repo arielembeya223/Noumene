@@ -23,6 +23,10 @@ $contents=$prepare->fetchAll(PDO::FETCH_OBJ);
 <?php require "nav.php"?>
 <div class="container">
      <div class="text-center mb2 mt-5">
+     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
         <h1><?=$_SESSION["auth"]["name"]?><h1>
         <a class="btn btn-success" href="<?=$router->generate("ecrire",["name"=>$_SESSION["auth"]["name"]])?>">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -36,11 +40,13 @@ $contents=$prepare->fetchAll(PDO::FETCH_OBJ);
 </div>
 <main class="d-flex justify-content-center   flex-wrap">
 <?php foreach($contents as  $content): ?>
-  <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
-  <div class="card-header"><div class="text-center"><?=$content->name?></div></div>
+  <div class="card text-white bg-success m-3" style="max-width: 18rem;">
+  <div class="card-header"><div class="text-center">
+    <?=$content->name?>
+  </div></div>
   <div class="card-body">
-    <h5 class="card-title text-center"><a href="<?=$router->generate("modification",['name'=>$content->name])?>"  class="btn btn-success">modifier l'article</a></h5>
-    <p class="card-text"> <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="btn btn-success">lire l'article</a></p>
+    <h5 class="card-title text-center"><a href="<?=$router->generate("modification",['name'=>$content->name])?>"  class="btn btn-light">modifier l'article</a></h5>
+    <p class="card-text"> <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="btn btn-light">lire l'article</a></p>
   </div>
 </div>
 <?php endforeach ?>

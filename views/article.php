@@ -81,7 +81,12 @@ require "nav.php"?>
             <?php
               $listing=new  Getpdo;
                $connexion=$listing::connect();
-                 $prepare=$connexion->prepare("SELECT * FROM article WHERE categorie=:categorie LIMIT 5 ");
+               $off= Getpdo::connect()->query("SELECT count(id) FROM article")->fetch()[0];
+               $offset=0;
+               if($off >5){
+                $offset=$off-5;
+               }
+                 $prepare=$connexion->prepare("SELECT * FROM article WHERE categorie=:categorie LIMIT 5 OFFSET $offset");
                 $prepare->execute(["categorie"=>$resolution->categorie]);
                  $fins=$prepare->fetchAll(PDO::FETCH_OBJ);
                     $countable=count($fins);

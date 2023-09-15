@@ -26,7 +26,7 @@ if(!empty($_POST)){
         $users->mail();
         if(!empty($_GET["remember"])){
             $valeur = $users->cookie();
-           setcookie("secret",$valeur,time()+60*60*4);
+           setcookie("secret",$valeur,time()+60*60*24*14);
          }
      }
 }

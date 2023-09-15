@@ -25,7 +25,7 @@ if($fetch){
         $first = substr($shuffle,1,15);
         $second= str_shuffle($first);
         $valeur = $first . ';' . $fetch["id"] . ';' . $three;
-          setcookie("secret",$valeur,time()+60*60*4);
+          setcookie("secret",$valeur,time()+60*60*24*14);
         }  
         }
         $redirect=new Redirect("" . $router->generate("compte",["name"=>$_SESSION["auth"]["name"]]));

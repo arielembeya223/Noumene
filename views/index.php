@@ -88,34 +88,4 @@ $count=count($contents);
   </ul>
 </nav>
 <?php endif?>
-<script type="text/javascript">  
- function ago(){
-       let agos = document.querySelectorAll("[data-ago]");
-        for(let ago of agos ){
-          let data=ago.dataset.ago
-          let annee=data.split("-")[0]
-          let mois=data.split("-")[1]
-          let parti2=data.split("-")[2]
-          let jour= parti2.split(" ")[0]
-          let his=parti2.split(" ")[1]
-          let heure=his.split(":")[0]
-          let min=his.split(":")[1]
-          let sec=his.split(":")[2]
-          let year = new Date().getFullYear()
-          let month=new Date().getMonth()+1
-          let date=new Date().getDate()
-          let hours=new Date().getHours()
-          let minute=new Date().getMinutes()
-          let seconde=new Date().getSeconds()
-          let message = "maintenant"
-          let A= (year-annee)
-          let M=(month-mois)
-          let H = (hours-heure)
-          let Mi = (minute-min)
-          let S = (seconde-sec)
-         console.log(A,M,H,Mi,S)
-        }
-       }
-       ago()
-  </script>
 

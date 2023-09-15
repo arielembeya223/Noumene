@@ -1,4 +1,4 @@
-      <title><?=$title ?? "Noumene"?></title>
+<title><?=$title ?? "Noumene"?></title>
   </head>
 <body>
 <style>

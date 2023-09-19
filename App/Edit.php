@@ -19,7 +19,7 @@ public $pdo;
     public  function verify()
     { 
         $error=[];
-        if(preg_match("#[^AZa-z0-9\.]#", $this->name)){
+        if(preg_match("#[^AZa-z0-9\.]i#", $this->name)){
             $error["name"] = "essayer de changer le nom de l'article ,eviter les esspaces ,les majuscules et les underscores";
         }
         if(strlen($this->content)<=60){

@@ -21,7 +21,7 @@ let links = document.querySelectorAll(".nav-link")
       name.addEventListener("keyup",function(e){
          let current= e.currentTarget.value
          let div = document.querySelector(".regex-ajout")
-    if (current.match(/[^AZa-z0-9\.]/)){
+    if (current.match(/[^AZa-z0-9\.]/i)){
      div.classList.remove("d-none")
    }else{
       if(div.classList.contains("d-none")){

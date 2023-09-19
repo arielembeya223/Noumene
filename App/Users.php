@@ -52,7 +52,7 @@ class Users{
             $error["username"]="ce nom est deja utilise veuillez le changer";
          }
         }
-        if(preg_match("#[^AZa-z0-9_\.]#", $this->name)){
+        if(preg_match("#[^AZa-z0-9_\.]i#", $this->name)){
         $error["username"] = "veuillez changer le format de votre nom";
         }
         if(!filter_var($this->email,FILTER_VALIDATE_EMAIL)){

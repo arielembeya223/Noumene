@@ -73,8 +73,12 @@ if(!empty($_POST)){
                                 <input type="password" name="comfirme" id="confirme" class="form-control" required>
                                 <div class="text-danger"></div>
                             </div>
+                             
                             <div class="form-group">
-                                <label for="remember-me" class="text-success"><span>se rappeller de moi   </span><span><input id="remember-me" name="remember" type="checkbox"></span></label><br>
+                             <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="remember">
+                                   <label class="form-check-label" for="flexSwitchCheckDefault">se rappeller de moi</label>
+                              </div>
                                 <input type="submit" name="submit" class="btn btn btn-success btn-md" value="creer un compte">
                                 <div class="text-success"></div>
                             </div>                  

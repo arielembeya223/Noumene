@@ -49,10 +49,10 @@ if($fetch){
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="mot de passe" required>
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
-    <label class="form-check-label" for="exampleCheck1">se rappeller de moi</label>
-  </div>
+  <div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="remember">
+  <label class="form-check-label" for="flexSwitchCheckDefault">se rappeller de moi</label>
+</div>
   <div class="form-group mb-2">
    <a href="<?=$router->generate("forgot")?>" class="text-success">Mot de passe oublie</a>
   </div>

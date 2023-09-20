@@ -10,10 +10,9 @@ $email_name=$_POST["email"];
 $password=$_POST["password"];
 $db=new Getpdo;
 $pdo=$db::connect();
-$prepare=$pdo->prepare("SELECT * FROM users WHERE name=:input OR email=:input COLLATE latin1_general_cs ");
+$prepare=$pdo->prepare("SELECT * FROM users WHERE name=:input OR email=:input");
 $prepare->execute(["input"=>$email_name]);
 $fetch=$prepare->fetch(PDO::FETCH_ASSOC);
-dd($fetch);
 if($fetch){
     $real_password=$fetch["password"];
     if(password_verify($password,$real_password)){

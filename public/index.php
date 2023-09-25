@@ -2,13 +2,14 @@
 
 require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 $router = new AltoRouter();
+$router->addMatchTypes(['t' => '[0-9A-Za-z\-\_\ ]++']);
 //homme page
 $router->map('GET', '/', function() {
     require  dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/index.php';
 },'home');
 //
 //page des articles
-$router->map('GET', '/[a:auteur]/[a:name]', function() {
+$router->map('GET', '/[a:auteur]/[t:name]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');
   //
@@ -48,7 +49,7 @@ $router->map('POST|GET', '/login', function() {
     }, 'ecrire');
     //
     //modification d'article
-    $router->map('POST|GET', '/compte/edit/modif/[a:name]', function() {
+    $router->map('POST|GET', '/compte/edit/modif/[t:name]', function() {
       require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/modif.php';
     }, 'modification');
     //regle et condition d'utilisation

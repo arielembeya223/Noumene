@@ -56,7 +56,7 @@ if(!(is_array($verify))){
 <h1 class="text-center mb2">creer un nouvel article<h1>
 <form action="" method="POST">
   <div class="form-group">
-  <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de nom veuillez le changer, evitez de mettre des espaces les majuscules et les underscores</div>
+  <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de titre veuillez le changer, evitez de mettre des espaces , utiliser plutot des underscores _ </div>
          <label for="name">Titre</label>
          <input type="text" class="form-control regex-nom" id="name" name="name" required>
    </div>

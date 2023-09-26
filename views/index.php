@@ -67,7 +67,7 @@ $count=count($contents);
         <h6 class="card-subtitle mb-2 text-muted"><?=$content->auteur?></h6>
         <p class="card-text"><?=$extrait->extrait()?></p>
         <span class="badge bg-light text-muted" data-ago="<?=$content->created_at?>" id="time"><?=$content->created_at?></span>
-        <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="card-link">lire l'article</a>
+        <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'slug'=>$content->slug])?>" class="card-link">lire l'article</a>
        </div>
      </div>
    </div>

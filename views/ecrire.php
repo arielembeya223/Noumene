@@ -24,7 +24,7 @@ $date=$dates->format('Y-m-d H:i:s');
 $name=$_POST["name"];
 $content=$_POST["content"];
 $auteur=$_SESSION["auth"]["name"];
-$slug=str_shuffle("abcdefghtyuiiiiiooopbvnchduwuw");
+$slug=str_shuffle("abcdefghtyuiiiiiooopbvnchduwuw00123456789");
 $created_at=$date;
 $categorie=$_POST["categorie"];
 $pdo=Getpdo::connect();
@@ -32,7 +32,7 @@ $edit=new Edit($name,$content,$pdo);
 $verify= $edit->verify();
 if(!(is_array($verify))){
     $edit->insert($auteur,$slug,$created_at,$categorie);
-    $lien = $router->generate("article",["auteur"=>$auteur,"name"=>$name]);
+    $lien = $router->generate("article",["auteur"=>$auteur,"slug"=>$slug]);
     $success="bravo ! votre article est en ligne voici le lien pour le consulter ";
 }else{
     $error=$verify;
@@ -42,11 +42,9 @@ if(!(is_array($verify))){
 <?php require "nav.php"?>
 <div class="container">
 <?php if ($error !== NULL):?>
-    <?php foreach($error as $e):?>
         <div class="alert alert-danger" role="alert">
-            <?=$e?>
+            <?=$error["content"]?>
         </div>
-    <?php endforeach ?>
 <?php endif ?>
 <?php if ($success !== NULL):?>
         <div class="alert alert-success" role="alert">
@@ -56,13 +54,12 @@ if(!(is_array($verify))){
 <h1 class="text-center mb2">creer un nouvel article<h1>
 <form action="" method="POST">
   <div class="form-group">
-  <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de titre veuillez le changer, evitez de mettre des espaces , utiliser plutot des underscores _ </div>
          <label for="name">Titre</label>
-         <input type="text" class="form-control regex-nom" id="name" name="name" required>
+         <input type="text" class="form-control regex-nom" id="name" name="name"  value="<?= $error['old_name'] ?? NULL ?>" required>
    </div>
    <div class="form-group">
          <label for="name">contenu de l'article</label>
-         <textarea  class="form-control  autogrow" name="content" style="min-height:100px" required></textarea>
+         <textarea  class="form-control  autogrow" name="content" style="min-height:100px" required><?= $error['old_content'] ?? NULL ?></textarea>
    </div>
    <div class="form-group">
          <label for="name">categorie de l'article</label>

@@ -19,13 +19,12 @@ public $pdo;
     public  function verify()
     { 
         $error=[];
-        if(preg_match("#/[^AZa-z0-9\.\ ]/i#", $this->name)){
-            $error["name"] = "essayer de changer le nom de l'article ,eviter les esspaces ,les majuscules et les underscores";
-        }
         if(strlen($this->content)<=60){
            $error["content"] = "le contenue de l'article est trop petit";
         }
         if(!empty($error)){
+            $error["old_name"]=$this->name;
+            $error["old_content"]=$this->content;
             return $error;
         }else{
             return true;
@@ -49,12 +48,11 @@ public $pdo;
     {
         $name=$this->name;
         $content=$this->content;
-        $prepare = $this->pdo->prepare("UPDATE  article SET name=:name,content=:content,auteur=:auteur,slug=:slug,created_at=:created_at,categorie=:categorie WHERE id=:id");
+        $prepare = $this->pdo->prepare("UPDATE  article SET name=:name,content=:content,auteur=:auteur,created_at=:created_at,categorie=:categorie WHERE id=:id");
         $prepare->execute([
           "name"=>$name,
            "content"=>$content,
            "auteur"=>$auteur,
-           "slug"=>$slug,
            "created_at"=>$created_at,
            "categorie"=>$categorie,
            "id"=>$id

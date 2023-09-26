@@ -16,7 +16,7 @@ if(!empty($_SESSION["auth"])){
 }
 $auteur=$_SESSION["auth"]["name"];
 $pdo = Getpdo::connect();
-$prepare = $pdo->prepare("SELECT * FROM article WHERE auteur=:auteur");
+$prepare = $pdo->prepare("SELECT * FROM article  WHERE auteur=:auteur ORDER BY created_at DESC");
 $prepare->execute(["auteur"=>$auteur]);
 $contents=$prepare->fetchAll(PDO::FETCH_OBJ);
 ?>
@@ -45,8 +45,8 @@ $contents=$prepare->fetchAll(PDO::FETCH_OBJ);
     <?=$content->name?>
   </div></div>
   <div class="card-body">
-    <h5 class="card-title text-center"><a href="<?=$router->generate("modification",['name'=>$content->name])?>"  class="btn btn-light">modifier l'article</a></h5>
-    <p class="card-text"> <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'name'=>$content->name])?>" class="btn btn-light">lire l'article</a></p>
+    <h5 class="card-title text-center"><a href="<?=$router->generate("modification",['slug'=>$content->slug])?>"  class="btn btn-light">modifier l'article</a></h5>
+    <p class="card-text"> <a href="<?php echo $router->generate("article",['auteur'=>$content->auteur,'slug'=>$content->slug])?>" class="btn btn-light">lire l'article</a></p>
   </div>
 </div>
 <?php endforeach ?>

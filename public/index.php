@@ -9,7 +9,7 @@ $router->map('GET', '/', function() {
 },'home');
 //
 //page des articles
-$router->map('GET', '/[a:auteur]/[t:name]', function() {
+$router->map('GET', '/[a:auteur]/[t:slug]', function() {
     require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/article.php';
   }, 'article');
   //
@@ -44,12 +44,12 @@ $router->map('POST|GET', '/login', function() {
   }, 'modif');
   //
     // d'edification
-    $router->map('POST|GET', '/compte/edit/[a:name]', function() {
+    $router->map('POST|GET', '/compte/edit/[t:name]', function() {
       require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/ecrire.php';
     }, 'ecrire');
     //
     //modification d'article
-    $router->map('POST|GET', '/compte/edit/modif/[t:name]', function() {
+    $router->map('POST|GET', '/compte/edit/modif/[t:slug]', function() {
       require dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views/modif.php';
     }, 'modification');
     //regle et condition d'utilisation

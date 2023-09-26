@@ -5,8 +5,11 @@ use App\Getpdo;
 global $router;
 global $params;
 $pdo= Getpdo::connect();
-$prepare = $pdo->prepare("SELECT * FROM article WHERE name=:name");
-$prepare->execute(["name"=>$params["name"]]);
+$prepare = $pdo->prepare("SELECT * FROM article WHERE slug=:slug AND auteur=:auteur");
+$prepare->execute([
+    "auteur"=>$_SESSION["auth"]["name"],
+     "slug"=>$params["slug"]
+]);
 $contents=$prepare->fetch(PDO::FETCH_OBJ);
 if($contents){
   if($_SESSION["auth"]["name"] !== $contents->auteur){
@@ -31,7 +34,7 @@ $edit=new Edit($name,$content,$pdo);
 $verify= $edit->verify();
 if(!(is_array($verify))){
     $edit->modif($auteur,$slug,$created_at,$categorie,$id);
-    $lien = $router->generate("article",["auteur"=>$auteur,"name"=>$name]);
+    $lien = $router->generate("article",["auteur"=>$auteur,"slug"=>$contents->slug]);
     $success="votre article a bien ete modifie voici le lien pour le consulter";
 }else{
     $error=$verify;
@@ -56,7 +59,7 @@ require "nav.php"
             <?=$success ?> <a href="<?=$lien?>">votre article</a>
         </div>
 <?php endif ?>
-<h1 class="text-center mb2">modifier  l'article <?=$params["name"]?><h1>
+<h1 class="text-center mb2">modifier  l'article <?=$contents->name?><h1>
 <form action="" method="POST">
   <div class="form-group">
   <div class=" d-none text-danger regex-ajout" style="font-size:20px;">mauvais format de nom veuillez le changer, evitez de mettre des espaces les majuscules et les underscores</div>
@@ -75,6 +78,6 @@ require "nav.php"
             <?php endforeach ?>
          </select>
    </div>
-   <button class="btn btn-success">Creer l'article</button>
+   <button class="btn btn-success">modifier l'article</button>
 </form>
 </div>

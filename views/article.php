@@ -8,10 +8,10 @@ global $params;
 $pdo=new  Getpdo;
 $db=$pdo::connect();
 $auteur=$params["auteur"];
-$name=$params["name"];
-$instance=$db->prepare("SELECT * FROM article WHERE name=:name AND auteur=:auteur");
+$slug=$params["slug"];
+$instance=$db->prepare("SELECT * FROM article WHERE slug=:slug AND auteur=:auteur");
 $instance->execute([
-    'name'=>$name,
+    'slug'=>$slug,
     'auteur'=>$auteur
 ]);
 $resolutions=$instance->fetchAll(PDO::FETCH_OBJ);
@@ -30,7 +30,7 @@ if($_GET){
        "pseudo"=>$pseudo,
         "content"=>$_GET['commentaire'],
         "auteur"=>$auteur,
-        "name"=>$name
+        "name"=>$slug
     ]);
 }
 
@@ -39,7 +39,7 @@ $preparation=$getcommentparam::connect();
 $commentaires=$preparation->prepare("SELECT * FROM commentaires  WHERE param_auteur=:auteur AND param_name=:name");
 $commentaires->execute([
    'auteur'=>$auteur,
-    'name'=>$name
+    'name'=>$slug
 ]);
 $finitos=$commentaires->fetchAll(PDO::FETCH_OBJ);
 ?>
@@ -53,7 +53,6 @@ require "nav.php"?>
       <!--gestion de l'affichage d'article-->
       <?php foreach($resolutions as $resolution):?>
             <h1><?=$resolution->name?></h1>
-            <h1><p>publie le: <?=$resolution->created_at?> par <?= $resolution->auteur?></p></h1>
             <p><?=nl2br($resolution->content)?></p>
       <!---->
       <!--insertion des commentaires-->

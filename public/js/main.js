@@ -41,6 +41,7 @@ let links = document.querySelectorAll(".nav-link")
       textarea.style.height=textarea.scrollHeight + "px";
     })
   }
-  trie() 
+  
 form()
 autogrow()
+trie() 
